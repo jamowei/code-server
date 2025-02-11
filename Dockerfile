@@ -24,8 +24,6 @@ RUN \
   /tmp/* \
   /var/tmp/*
 
-COPY bashrc /workspace/.bashrc
-
 EXPOSE 8080
 
 ENTRYPOINT [ "/app/code-server/run.sh" ]
