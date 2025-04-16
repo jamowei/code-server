@@ -7,7 +7,7 @@ COPY run.sh /app/code-server/run.sh
 RUN \
   echo "**** install runtime dependencies ****" && \
   dnf update -y && \
-  dnf install -y curl nano wget net-tools openssl git nodejs golang python3 && \
+  dnf install -y curl nano wget net-tools openssl git nodejs golang python3 podman && \
   echo "**** install code-server ****" && \
   CODE_RELEASE=$(echo $VERSION | sed 's|^v||') && \
   mkdir -p /app/code-server && \
