@@ -14,24 +14,29 @@ and starts the great [code-server](https://github.com/coder/code-server) inside.
 docker run --rm --name code-server \
  -p 8080:8080 \
  -e PASSWORD=mypassword \
- -v /my/workspace:/workspace \
+ -v /home/dev:/my-workspace \
  ghcr.io/jamowei/code-server:latest
 ```
 
 Then open http://localhost:8080/
 
+Using `sudo` the default password is `changeit`. You can set a new password by running:
+```
+echo "${USER}:new_password" | sudo chpasswd
+```
+
 ## Environment Variables
 
-| Name       | Default Value                                                                                                                                                                                                             | Description                                                                                                               |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| LOCALE     | `en`                                                                                                                                                                                                                      | Set the locale of vs-code. See available [here](https://code.visualstudio.com/docs/getstarted/locales#_available-locales) |
-| PASSWORD   | `changeit`                                                                                                                                                                                                                | Password for using code-server                                                                                            |
-| EXTENSIONS | `golang.go\|ms-python.python\|ms-python.debugpy\|eamodio.gitlens\|humao.rest-client\|esbenp.prettier-vscode\|dbaeumer.vscode-eslint\|ecmel.vscode-html-css\|pkief.material-icon-theme\|k--kato.intellij-idea-keybindings` | List of vs-code extensions-ids, separated by `\|`                                                                         |
+| Name       | Default Value                                                                                                                                                                                                     | Description                                                                                                               |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| LOCALE     | `en`                                                                                                                                                                                                              | Set the locale of vs-code. See available [here](https://code.visualstudio.com/docs/getstarted/locales#_available-locales) |
+| PASSWORD   | `changeit`                                                                                                                                                                                                        | Password for using code-server                                                                                            |
+| EXTENSIONS | `golang.go\|ms-python.python\|ms-python.debugpy\|eamodio.gitlens\|humao.rest-client\|esbenp.prettier-vscode\|dbaeumer.vscode-eslint\|ecmel.vscode-html-css\|pkief.material-icon-theme\|dreamcatcher45.podmanager` | List of vs-code extensions-ids, separated by `\|` which gets added to the default ones                                    |
 
 ## Build it
 
 Get the latest released `VERSION` of [code-server](https://github.com/coder/code-server)
 from [here](https://github.com/coder/code-server/releases).
 ```
-docker build --build-arg VERSION=v4.96.4 -t myrepo/code-server:v1.0 .
+docker build --build-arg VERSION=v4.96.4 -t myrepo/code-server:latest.
 ```

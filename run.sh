@@ -1,20 +1,14 @@
 #!/bin/bash
 
 # set defaults for env vars
-export HOME="/workspace"
 LOCALE="${LOCALE:-en}"
-PASSWORD="${PASSWORD:-changeit}"
-EXTENSIONS="${EXTENSIONS:-golang.go|ms-python.python|ms-python.debugpy|eamodio.gitlens|humao.rest-client|esbenp.prettier-vscode|dbaeumer.vscode-eslint|ecmel.vscode-html-css|pkief.material-icon-theme}"
-
-# update system
-dnf update -y
+PORT=8080
+EXTENSIONS="golang.go|ms-python.python|ms-python.debugpy|eamodio.gitlens|humao.rest-client|esbenp.prettier-vscode|dbaeumer.vscode-eslint|ecmel.vscode-html-css|pkief.material-icon-theme|dreamcatcher45.podmanager|${EXTENSIONS}"
+EXTENSIONS=${EXTENSIONS%|}
+export PASSWORD="${PASSWORD:-changeit}"
 
 # create .bashrc
-cat > /workspace/.bashrc << EOL
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
-fi
-unset rc
+cat >> $HOME/.bashrc << EOL
 
 alias cd..='cd ..'
 
@@ -30,4 +24,4 @@ EOL
 # install vs-code extensions
 /app/code-server/bin/code-server --install-extension ${EXTENSIONS//|/ --install-extension }
 # run code-server
-/app/code-server/bin/code-server --disable-telemetry --disable-workspace-trust --locale ${LOCALE} --bind-addr 0.0.0.0:8080
+/app/code-server/bin/code-server --disable-telemetry --disable-workspace-trust --locale ${LOCALE} --bind-addr 0.0.0.0:${PORT}
