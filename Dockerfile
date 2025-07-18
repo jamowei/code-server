@@ -12,7 +12,7 @@ RUN passwd -l root && \
     chmod 755 /home/$USER_NAME
 
 RUN dnf update -y && \
-    dnf install -y curl nano wget net-tools openssl git nodejs golang python3 podman && \
+    dnf install -y curl nano wget net-tools openssl git nodejs golang python3 && \
     rpm --restore shadow-utils && \
     dnf clean all && \
     rm -rf /tmp/* /var/tmp/* /var/cache /var/log/dnf*
