@@ -3,7 +3,7 @@
 # set defaults for env vars
 LOCALE="${LOCALE:-en}"
 PORT=8080
-EXTENSIONS="golang.go|ms-python.python|ms-python.debugpy|eamodio.gitlens|humao.rest-client|esbenp.prettier-vscode|dbaeumer.vscode-eslint|ecmel.vscode-html-css|pkief.material-icon-theme|dreamcatcher45.podmanager|${EXTENSIONS}"
+EXTENSIONS="golang.go|ms-python.python|ms-python.debugpy|eamodio.gitlens|humao.rest-client|esbenp.prettier-vscode|dbaeumer.vscode-eslint|ecmel.vscode-html-css|pkief.material-icon-theme|task.vscode-task|${EXTENSIONS}"
 EXTENSIONS=${EXTENSIONS%|}
 export PASSWORD="${PASSWORD:-changeit}"
 

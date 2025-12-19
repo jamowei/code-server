@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM docker.io/fedora:latest
 
 ARG VERSION
 ARG USER_NAME=dev
@@ -12,7 +12,8 @@ RUN passwd -l root && \
     chmod 755 /home/$USER_NAME
 
 RUN dnf update -y && \
-    dnf install -y curl nano wget net-tools openssl git nodejs golang python3 && \
+    dnf install -y curl nano wget net-tools openssl git go-task nodejs golang python3 wasmedge && \
+    ln -s /usr/bin/go-task /usr/bin/task && \
     rpm --restore shadow-utils && \
     dnf clean all && \
     rm -rf /tmp/* /var/tmp/* /var/cache /var/log/dnf*
